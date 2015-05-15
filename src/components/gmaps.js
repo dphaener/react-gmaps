@@ -19,7 +19,7 @@ let Gmaps = React.createClass({
   componentWillUnmount() {
     this.unbindEvents();
   },
-  
+
   render() {
     let style = assign({
       width: this.props.width,
@@ -44,7 +44,7 @@ let Gmaps = React.createClass({
       this.mapsCallback();
     }
   },
-  
+
   mapsCallback() {
     delete window.mapsCallback;
     this.createMap();
