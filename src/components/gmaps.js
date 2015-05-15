@@ -47,6 +47,33 @@ let Gmaps = React.createClass({
 
   mapsCallback() {
     delete window.mapsCallback;
+
+    if (this.props.lat && this.props.lng) {
+      this.createMap();
+      this.createChildren();
+      this.bindEvents();
+    } else {
+      this.getGeocode(this.props.address);
+    }
+  },
+
+  getGeocode(address) {
+    let geocoder = new google.maps.Geocoder
+    this.latlng = geocoder.geocode({
+      'address': address
+    }, this.geocodeCallback);
+  },
+
+  geocodeCallback(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      latlng = results[0].geometry.location;
+
+      this.setProps({
+        lat: latlng.lat(),
+        lng: latlng.lng()
+      });
+    }
+
     this.createMap();
     this.createChildren();
     this.bindEvents();
