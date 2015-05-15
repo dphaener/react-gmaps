@@ -7,6 +7,7 @@ let Polygon = React.createClass({
     });
 
     let polygon = new google.maps.Polygon({
+      map: this.props.map,
       paths: coordinates,
       strokeColor: this.props.strokeColor || '#BBD8E9',
       strokeOpacity: this.props.strokeOpactiy || 0.8,
